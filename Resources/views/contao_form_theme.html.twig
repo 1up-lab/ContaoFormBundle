@@ -31,7 +31,7 @@
 {%- endblock form_row -%}
 
 {% block form_row_default %}
-    <div {% if not (contao.fullwidth is defined ? contao.fullwidth : true) %}class="w50"{% endif %}>
+    <div class="widget{% if not (contao.fullwidth is defined ? contao.fullwidth : true) %} w50{% endif %}">
         {{- form_label(form) -}}
         {{- form_errors(form) -}}
         {{- form_widget(form) -}}
@@ -40,7 +40,7 @@
 {% endblock %}
 
 {% block form_row_checkbox %}
-    <div class="cbx {% if not (contao.fullwidth is defined ? contao.fullwidth : true) %}w50{% endif %}">
+    <div class="widget cbx {% if not (contao.fullwidth is defined ? contao.fullwidth : true) %}w50{% endif %}">
         <div id="ctrl_{{ name }}" class="tl_checkbox_single_container">
             {{- form_widget(form) -}}
             {{- form_label(form) -}}

@@ -2,7 +2,7 @@
 
 namespace Oneup\ContaoFormBundle\Form\Extension\Type;
 
-use AppBundle\Form\Extension\AbstractContaoFormExtension;
+use Oneup\ContaoFormBundle\Form\Extension\AbstractContaoFormExtension;
 use Contao\BackendTemplate;
 use Contao\Controller;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;

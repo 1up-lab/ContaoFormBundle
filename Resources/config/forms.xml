@@ -5,20 +5,20 @@
 
     <services>
         <!-- Form Extensions -->
-        <service id="oneup.contao_form_extension.text" class="Oneup\ContaoFormBundle\Form\Extension\Type\TextExtension" public="false">
+        <service id="oneup.contao_form_extension.text" class="Oneup\ContaoFormBundle\Form\Extension\Type\TextExtension">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\TextType" />
         </service>
 
-        <service id="oneup.contao_form_extension.textarea" class="Oneup\ContaoFormBundle\Form\Extension\Type\TextareaExtension" public="false">
-            <argument type="service" id="contao_framework" />
+        <service id="oneup.contao_form_extension.textarea" class="Oneup\ContaoFormBundle\Form\Extension\Type\TextareaExtension">
+            <argument type="service" id="contao.framework" />
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\TextareaType" />
         </service>
 
-        <service id="oneup.contao_form_extension.checkbox" class="Oneup\ContaoFormBundle\Form\Extension\Type\CheckboxExtension" public="false">
+        <service id="oneup.contao_form_extension.checkbox" class="Oneup\ContaoFormBundle\Form\Extension\Type\CheckboxExtension">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\CheckboxType" />
         </service>
 
-        <service id="oneup.contao_form_extension.choice" class="Oneup\ContaoFormBundle\Form\Extension\Type\ChoiceExtension" public="false">
+        <service id="oneup.contao_form_extension.choice" class="Oneup\ContaoFormBundle\Form\Extension\Type\ChoiceExtension">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
         </service>
     </services>

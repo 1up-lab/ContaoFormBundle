@@ -2,7 +2,7 @@
 
 namespace Oneup\ContaoFormBundle\Form\Extension\Type;
 
-use AppBundle\Form\Extension\AbstractContaoFormExtension;
+use Oneup\ContaoFormBundle\Form\Extension\AbstractContaoFormExtension;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class TextExtension extends AbstractContaoFormExtension

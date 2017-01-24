@@ -1,0 +1,98 @@
+{% extends "form_div_layout.html.twig" %}
+
+{%- block form_label -%}
+    {% if type == 'checkbox' %}
+        {{ parent() }}
+    {% else %}
+        <h3>
+            {{ parent() }}
+            {% if required %}
+                <span class="mandatory">*</span>
+            {% endif %}
+        </h3>
+    {% endif %}
+{%- endblock form_label -%}
+
+{%- block form_widget_compound -%}
+    {# For the correct stylings, the field must be surrounded by either .tl_box, .tl_tbox or .tl_xph #}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ '')|trim}) %}
+
+    {{ parent() }}
+{%- endblock form_widget_compound -%}
+
+{%- block form_row -%}
+    {% set _block = block('form_row_' ~ type) %}
+
+    {% if _block is not empty %}
+        {{ _block|raw }}
+    {% else %}
+        {{ block('form_row_default') }}
+    {% endif %}
+{%- endblock form_row -%}
+
+{% block form_row_default %}
+    <div {% if not (contao.fullwidth is defined ? contao.fullwidth : true) %}class="w50"{% endif %}>
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+        {{- block('form_help') -}}
+    </div>
+{% endblock %}
+
+{% block form_row_checkbox %}
+    <div class="cbx {% if not (contao.fullwidth is defined ? contao.fullwidth : true) %}w50{% endif %}">
+        <div id="ctrl_{{ name }}" class="tl_checkbox_single_container">
+            {{- form_widget(form) -}}
+            {{- form_label(form) -}}
+        </div>
+
+        {{- block('form_help') -}}
+        {{- form_errors(form) -}}
+    </div>
+{% endblock %}
+
+{%- block form_help -%}
+    {% if contao.help | default(false) %}
+        <p class="tl_help tl_tip" title="">{{ contao.help }}</p>
+    {% endif %}
+{%- endblock -%}
+
+{%- block form_end -%}
+    {%- if not render_rest is defined or render_rest -%}
+        {{ form_rest(form) }}
+    {%- endif -%}
+    <div class="clr"></div>
+    </form>
+{%- endblock form_end -%}
+
+{# Text #}
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+
+    {% if type == 'text' %}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' tl_text')|trim}) %}
+    {% endif %}
+
+    {{ parent() }}
+{%- endblock form_widget_simple -%}
+
+{# Select #}
+{%- block choice_widget_collapsed -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' tl_select')|trim}) %}
+
+    {% if layout.chosen is defined and layout.chosen %}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' tl_chosen')|trim}) %}
+    {% endif %}
+
+    {{ parent() }}
+{%- endblock choice_widget_collapsed -%}
+
+{# Textarea #}
+{%- block textarea_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' tl_textarea')|trim}) %}
+    {{ parent() }}
+
+    {% if contao.rte | default(false) %}
+        {{ tinyMCE_template | raw }}
+    {% endif %}
+{%- endblock textarea_widget -%}
